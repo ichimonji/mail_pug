@@ -1,0 +1,19 @@
+doctype html
+block vars
+include _mixins
+- var title = base.sitename + ': ' + mail.title
+html(lang='ja')
+  head
+    meta( http-equiv = 'Content-Language', content = 'ja' )
+    meta( http-equiv = 'Content-Type', content = 'text/html; charset = utf-8' )
+    meta( name = 'viewport', content = 'initial-scale = 1, width = device-width' )
+    meta( name = 'format-detection', content = 'telephone = no, address = no, email = no, date = no' )
+    meta( http-equiv = 'Content-Style-Type', content = 'text/css' )
+    title= title
+    |
+    |<style><!--
+    |@@include('../../dist/css/insert_#{pageid}.css')
+    |--></style>
+    link( rel = 'stylesheet', href = 'css/inline_' + pageid + '.css' )
+  +body
+    block contents

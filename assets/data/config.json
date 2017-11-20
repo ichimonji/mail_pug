@@ -1,0 +1,17 @@
+{
+	"base": {
+		"sitename": "sample site",
+		"charset": "utf-8",
+		"host": "http://www.sample.org/",
+		"imghost": "http://www.sample.org/img/mail/"
+	},
+	"page": [{
+		"pageid": "mail2017xxx2",
+		"title": "this is mail name. part2",
+		"description": "this is individual description part2"
+	}, {
+		"pageid": "mail2017xxxx",
+		"title": "this is mail name.",
+		"description": "this is individual description"
+	}]
+}

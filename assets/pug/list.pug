@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title メイル一覧
+  body
+    table
+      tr
+        th
+          | pageid
+        th
+          | title
+        th
+          | description
+      each val in page
+        tr
+          td
+            | #{val.pageid}
+          td
+            a( href = val.pageid + '.html' )
+              | #{val.title}
+          td
+            | #{val.description}

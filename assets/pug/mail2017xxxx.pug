@@ -1,0 +1,62 @@
+extends module/_layout
+
+block vars
+  //- ページid
+  - let pageid = 'mail2017xxxx'
+
+block contents
+  +table( width = '100%' )
+    tr: td( align = 'center', bgcolor = '#f2f2f2' )
+      +msoStart
+      +table( class = 'maw600', width = '100%' )
+        tr( height = 6 )
+          td( width = '2%' )
+          td( width = '96%' )
+          td( width = '2%' )
+        tr
+          td( rowspan = 2 )
+          td.fz12( align = 'left' )
+            font( color = '#999999' )
+              | このメールがご覧になれない場合は
+              a( href = 'http://google.com/', target='_blank' )
+                | こちら</a>
+              | をタップしてください。
+          td( rowspan = 2 )
+        tr( height = 6 ): td
+      +msoEnd
+    tr: td.bdc1( align = 'center' )
+      +msoStart
+      +table( class = 'maw600', width = '100%' )
+        tr
+          td( width = '2%' )
+          td.fz14s( align = 'left', width = '62%' )
+            a( rel = 'nofollow', target = '_blank', http = 'http://google.com/' )
+              img.maw100p( src = 'https://picsum.photos/307/80?image=910', alt = base.name, width = 307, border = 0 )
+          td.fz14s( align = 'right', width = '34%', valign = 'middle' )
+            img.maw100p( src = 'https://picsum.photos/180/40?image=911' alt = '', width = 180 )
+          td( width = '2%' )
+      +msoEnd
+    tr: td( align = 'center' )
+      +msoStart
+      +table( class = 'maw600', width = '100%', bgcolor = '#d23933' )
+        tr( height = 6 )
+          td( width = '2%', rowspan = 3 )
+          td( width = '96%' )
+          td( width = '2%', rowspan = 3 )
+        tr
+          td.fz14( align = 'left' )
+            font( color = '#ffffff' )
+              b
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                | Distinctio odit, veritatis nulla enim blanditiis dolor repudiandae quod maxime assumenda qui perferendis dolorum suscipit fugit magni, molestiae sapiente? Recusandae saepe, nulla.
+        tr: td( height = 6 )
+        tr( bgcolor = '#ffffff' )
+          td( rowspan = 3 )
+          td( height = 6 )
+          td( rowspan = 3 )
+        tr( bgcolor = '#ffffff' )
+          td.fz12( align = 'left' )
+            font( color = '#999999' )
+              | Minima culpa repellendus at sint omnis, quibusdam nemo asperiores, assumenda laborum ullam perspiciatis, sequi possimus officia nam ea maiores cum, ducimus illo? Quidem blanditiis porro asperiores, at mollitia ab aliquam.
+        tr( bgcolor = '#ffffff', height = 6 ): td
+      +msoEnd
