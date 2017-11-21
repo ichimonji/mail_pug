@@ -1,7 +1,8 @@
 doctype html
 block vars
+- var page = pages[pageid]
 include _mixins
-- var title = base.sitename + ': ' + mail.title
+- var title = base.sitename + ': ' + page.title
 html(lang='ja')
   head
     meta( http-equiv = 'Content-Language', content = 'ja' )
@@ -9,11 +10,21 @@ html(lang='ja')
     meta( name = 'viewport', content = 'initial-scale = 1, width = device-width' )
     meta( name = 'format-detection', content = 'telephone = no, address = no, email = no, date = no' )
     meta( http-equiv = 'Content-Style-Type', content = 'text/css' )
+    meta(name = 'description', content = page.description)
     title= title
-    |
-    |<style><!--
-    |@@include('../../dist/css/insert_#{pageid}.css')
-    |--></style>
-    link( rel = 'stylesheet', href = 'css/inline_' + pageid + '.css' )
+    - if( page.insert_style )
+      |<style><!--
+      |@@include('../../dist/css/#{page.insert_style}')
+      |--></style>
+    - if( page.inline_style )
+      link( rel = 'stylesheet', href = 'css/' + page.inline_style )
   +body
-    block contents
+    +table( width = '100%' )
+      //- header
+      include _header
+
+      //- contents
+      block contents
+
+      //- footer
+      include _footer

@@ -1,0 +1,27 @@
+tr: td( align = 'center', bgcolor = '#f2f2f2' )
+  +mso
+    +table( class = 'maw600', width = '100%' )
+      tr( height = 6 )
+        td( width = '2%' )
+        td( width = '96%' )
+        td( width = '2%' )
+      tr
+        td( rowspan = 2 )
+        td.fz12( align = 'left' )
+          font( color = '#999999' )
+            | このメールがご覧になれない場合は
+            a( href = 'http://google.com/', target='_blank' )
+              | こちら</a>
+            | をタップしてください。
+        td( rowspan = 2 )
+      tr( height = 6 ): td
+tr.sp-hidden( height = 12): td
+tr: td.bdc1( align = 'center' )
+  +mso
+    +table( class = 'maw600', width = '100%' )
+      tr
+        td.fz14s( align = 'left', width = '75%' )
+          a( rel = 'nofollow', target = '_blank', http = 'http://google.com/' )
+            img.maw100p( src = 'https://picsum.photos/450/80?image=910', alt = base.sitename, width = 450, border = 0 )
+        td.fz14s( align = 'right', width = '25%', valign = 'middle' )
+          img.maw100p( src = 'https://picsum.photos/150/80?image=909' alt = '', width = 150 )

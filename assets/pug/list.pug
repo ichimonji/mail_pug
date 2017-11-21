@@ -2,8 +2,23 @@ doctype html
 html
   head
     title メイル一覧
+    style
+      | table {
+      |   border-collapse: collapse;
+      | }
+      | caption {
+      |   background-color: #333333;
+      |   font-size: 20px;
+      |   color: #eeeeee;
+      |   font-weight: 900;
+      | }
+      | td {
+      |   padding: 5px;
+      |   border: 1px solid #000000;
+      | }
   body
     table
+      caption= base.sitename
       tr
         th
           | pageid
@@ -11,12 +26,12 @@ html
           | title
         th
           | description
-      each val in page
+      each val, key in pages
         tr
           td
-            | #{val.pageid}
+            | #{key}
           td
-            a( href = val.pageid + '.html' )
+            a( target = '_blank', href = key + '.html' )
               | #{val.title}
           td
             | #{val.description}

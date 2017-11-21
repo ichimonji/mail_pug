@@ -1,0 +1,32 @@
+@import 'nib'
+@import '../module/_insert'
+
+.clear
+  clear both
+
++sp()
+  .flex-parent
+    display -webkit-flex
+    display -moz-flex
+    display -ms-flex
+    display -o-flex
+    display flex
+    flex-direction row
+    flex-wrap wrap
+    justify-content flex-start
+    align-items stretch
+    padding 5px
+    box-sizing border-box
+  .resp_division
+    border 5px solid #ffffff
+    box-sizing border-box
+    width 50% !important
+    float left !important
+    background-color: #000000
+    & > .maw240,
+    & > .maw360
+      width 100% !important
+      height auto
+      max-width 300px !important
+      img
+        width 100% !important

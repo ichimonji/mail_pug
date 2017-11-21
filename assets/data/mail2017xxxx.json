@@ -1,6 +1,46 @@
 {
-	"mail": {
-		"title": "this is mail name.",
-		"description": "this is individual description"
-	}
+  "items": [
+    {
+      "title": "Nesciunt, dolor, architecto?",
+      "imgpath": "https://picsum.photos/600/400?image=921",
+      "detail": "Ut, odit, iste? Explicabo, beatae eius ipsum."
+    },
+    {
+      "title": "Aliquam, officia illum.",
+      "imgpath": "https://picsum.photos/600/400?image=922",
+      "detail": "Nobis, deserunt enim. Illo accusantium, quibusdam soluta ipsa assumenda, Aliquam iusto numquam maiores, eligendi unde cupiditate!"
+    },
+    {
+      "title": "Molestiae, ducimus, excepturi!",
+      "imgpath": "https://picsum.photos/600/400?image=923",
+      "detail": "Praesentium voluptas culpa tempora non nulla consequuntur."
+    },
+    {
+      "title": "Harum, officiis, ad.",
+      "imgpath": "https://picsum.photos/600/400?image=924",
+      "detail": "Temporibus architecto excepturi ratione, molestias odio ab. Laudantium eligendi temporibus non maiores voluptas."
+    },
+    {
+      "title": "Harum, perspiciatis, nemo.",
+      "imgpath": "https://picsum.photos/600/400?image=925",
+      "detail": "Repellat deserunt, nostrum, tempore unde pariatur sunt!"
+    },
+    {
+      "title": "Optio, magnam, inventore.",
+      "imgpath": "https://picsum.photos/600/400?image=926",
+      "detail": "Sit inventore cumque, totam deserunt exercitationem eum!"
+    },
+    {
+      "title": "Odio, dicta, debitis.",
+      "imgpath": "https://picsum.photos/600/400?image=927",
+      "detail": "Tempore, tenetur. Exercitationem quis cupiditate earum non."
+    }
+  ]
 }
+
+
+
+
+
+
+

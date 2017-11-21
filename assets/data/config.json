@@ -3,15 +3,22 @@
 		"sitename": "sample site",
 		"charset": "utf-8",
 		"host": "http://www.sample.org/",
-		"imghost": "http://www.sample.org/img/mail/"
+		"imghost": "http://www.sample.org/img/mail/",
+		"supportmail": "support@sample.org",
+		"helppage": "http://www.sample.org/help/index.html"
 	},
-	"page": [{
-		"pageid": "mail2017xxx2",
-		"title": "this is mail name. part2",
-		"description": "this is individual description part2"
-	}, {
-		"pageid": "mail2017xxxx",
-		"title": "this is mail name.",
-		"description": "this is individual description"
-	}]
+	"pages": {
+		"mail2017xxxx": {
+			"title": "this is mail name.",
+			"description": "this is individual description",
+			"insert_style": "mail2017xxxx/insert.css",
+			"inline_style": "mail2017xxxx/inline.css"
+		},
+		"mail2017xxx2": {
+			"title": "this is mail name. part2",
+			"description": "this is individual description part2",
+			"insert_style": "mail2017xxx2/insert.css",
+			"inline_style": "mail2017xxx2/inline.css"
+		}
+	}
 }

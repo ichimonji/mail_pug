@@ -55,7 +55,7 @@ const
   };
 
 let
-  page = [];
+  page = {};
 
 /* server */
 gulp.task('server', () => {
@@ -72,7 +72,7 @@ gulp.task('server', () => {
 
 /* pug */
 gulp.task('pug', () =>
-  gulp.src( [ assets + 'pug/**/*.pug', '!' + assets + 'pug/module/**/*.pug', '!' + assets + 'pug/list.pug' ] )
+  gulp.src( [ assets + 'pug/**/*.pug', '!' + assets + 'pug/module/**/*.pug' ] )
     // 共通データの読み込み
     .pipe(data( file => {
       return setJson( assets + 'data/config.json' );
@@ -84,16 +84,6 @@ gulp.task('pug', () =>
         c = file.path.split('\\').join('/');
         filename = c.split('/pug/')[1].replace('.pug', '');
         filepath = assets + 'data/' + filename + '.json';
-        if ( isExistFile(filepath) ){
-          let pagePri = setJson(filepath);
-          console.log('1',pagePri);
-          page.push( {
-            "pageid": filename,
-            "title": pagePri.mail.title,
-            "description": pagePri.mail.description
-          } )
-          console.log('2',page)
-        }
         if ( isExistFile(filepath) ) return setJson(filepath);
       }
     }))
@@ -103,20 +93,20 @@ gulp.task('pug', () =>
     .pipe(gulp.dest( dist ))
 );
 
-/* jsonEdit */
+/* jsonEdit
 gulp.task('jsonEdit', () =>
   gulp.src( assets + 'data/config.json' )
     .pipe(jsonEdit(
       json => {
-        console.log(page);
         json.page = page;
         return json;
       }
     ))
     .pipe(gulp.dest( assets + 'data/' ))
 )
+ */
 
-/* build list index */
+/* build list index
 gulp.task('buildlist', () =>
   gulp.src( [ assets + 'pug/list.pug' ] )
     // データの読み込み
@@ -128,6 +118,7 @@ gulp.task('buildlist', () =>
     .pipe(fileInclude())
     .pipe(gulp.dest( dist ))
 );
+ */
 
 /* stylus */
 gulp.task('stylus', () =>
@@ -155,12 +146,12 @@ gulp.task(
 /* htmlbuild */
 gulp.task(
   'htmlbuild',
-  callback => runSequence( 'pug', 'jsonEdit', 'inline', 'buildlist', callback )
+  callback => runSequence( 'pug', 'inline', callback )
 );
 /* build */
 gulp.task(
   'build',
-  callback => runSequence( 'stylus', 'pug', 'jsonEdit', 'inline', 'buildlist', callback )
+  callback => runSequence( 'stylus', 'pug', 'inline', callback )
 );
 
 /* watch */

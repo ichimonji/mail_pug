@@ -1,5 +1,9 @@
 @import 'nib'
 
+sp()
+  @media screen and ( max-width: 600px )
+    {block}
+
 td
   padding: 0
   line-height: 0
@@ -30,3 +34,19 @@ a
     color: #3366cc
   &:active
     text-decoration: underline
+
++sp()
+  .sp-hidden
+    display none
+  .fz12
+    font-size 10px !important
+    line-height 12px !important
+  .fz14
+    font-size 12px !important
+    line-height 14px !important
+  .fz14s
+    font-size 12px !important
+    line-height 12px !important
+  .fz16
+    font-size 14px !important
+    line-height 18px !important
