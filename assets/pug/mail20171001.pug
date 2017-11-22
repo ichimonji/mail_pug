@@ -27,28 +27,59 @@ block contents
             font( color = col.gray )
               | Minima culpa repellendus at sint omnis, quibusdam nemo asperiores, assumenda laborum ullam perspiciatis, sequi possimus officia nam ea maiores cum, ducimus illo? Quidem blanditiis porro asperiores, at mollitia ab aliquam.
         tr( bgcolor = col.gray_lighter, height = 6 ): td
-  tr.sp-hidden( height = 12): td
   tr: td( align = center )
     +mso
-      +table.maw600( width = '100%' )
+      +table.maw600( width = '100%', bgcolor = '#aaeeff' )
         tr( height = 12 )
-          td.clear
-            div.flex-parent
-              - for( var i = 0; i < items.length; i++ )
-                - let item = items[i]
-                div.resp_division
-                  +table.maw240( align = left, width = '40%', height = 172 )
-                    tr
-                      td( width = '100%', valign = top, bgcolor = col.black )
-                        img.maw100p( alt = item.title, src = item.imgpath, width = 240 )
-                    tr.sp-hidden( height = 12 ): td
-                  +table.maw360( align = left, width = '60%', height = 172 )
-                    tr( height = 35 )
-                      td( width = '100%', valign = top, bgcolor = col.black )
-                        div.p2p.fz16
-                          b: font( color = col.gray_lighter )= item.title
-                    tr
-                      td( width = '100%', valign = top, bgcolor = col.black )
-                        div.p022p.fz14
-                          b: font( color = col.gray_lighter )= item.detail
-                    tr.sp-hidden( height = 12 ): td
+          td( width = '2%' )
+          td( width = '2%' )
+          td( width = '43%' )
+          td( width = '2%' )
+          td( width = '2%' )
+          td( width = '2%' )
+          td( width = '43%' )
+          td( width = '2%' )
+          td( width = '2%' )
+        - for( var i = 0; i < items.length; i = i + 2 )
+          - let leftItem = items[i]
+          - let rightItem = items[i+1]
+          tr
+            td( rowspan = 6 )
+            td.fz12( colspan = 3 )
+              img.maw100p( alt = leftItem.title, src = leftItem.imgpath, width = 282 )
+            td( rowspan = 6 )
+            if rightItem
+              td.fz12( colspan = 3 )
+                img.maw100p( alt = rightItem.title, src = rightItem.imgpath, width = 282 )
+            else
+              td( colspan = 3, rowspan = 6 )
+            td( rowspan = 6 )
+          tr( height = 6 )
+            td( colspan = 3, bgcolor = col.white )
+            if rightItem
+              td( colspan = 3, bgcolor = col.white )
+          tr
+            td( bgcolor = col.white )
+            td.fz14( bgcolor = col.white ): font( color = col.gray_darker ): b= leftItem.title
+            td( bgcolor = col.white )
+            if rightItem
+              td( bgcolor = col.white )
+              td.fz14( bgcolor = col.white ): font( color = col.gray_darker ): b= rightItem.title
+              td( bgcolor = col.white )
+          tr( height = 6 )
+            td( colspan = 3, bgcolor = col.white )
+            if rightItem
+              td( colspan = 3, bgcolor = col.white )
+          tr
+            td( bgcolor = col.white )
+            td.fz12( bgcolor = col.white, valign = top ): font( color = col.gray )= leftItem.detail
+            td( bgcolor = col.white )
+            if rightItem
+              td( bgcolor = col.white )
+              td.fz12( bgcolor = col.white, valign = top ): font( color = col.gray )= rightItem.detail
+              td( bgcolor = col.white )
+          tr( height = 6 )
+            td( colspan = 3, bgcolor = col.white )
+            if rightItem
+              td( colspan = 3, bgcolor = col.white )
+          tr( height = 12 ): td( colspan = 9 )

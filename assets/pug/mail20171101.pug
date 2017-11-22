@@ -24,62 +24,37 @@ block contents
           td( rowspan = 3 )
         tr( bgcolor = col.gray_lighter )
           td.fz12( align = left )
-            font( color = '#555555' )
+            font( color = col.gray )
               | Minima culpa repellendus at sint omnis, quibusdam nemo asperiores, assumenda laborum ullam perspiciatis, sequi possimus officia nam ea maiores cum, ducimus illo? Quidem blanditiis porro asperiores, at mollitia ab aliquam.
         tr( bgcolor = col.gray_lighter, height = 6 ): td
+  tr.sp-hidden( height = 12): td
   tr: td( align = center )
     +mso
-      +table.maw600( width = '100%', bgcolor = '#aaeeff' )
+      +table.maw600( width = '100%' )
         tr( height = 12 )
-          td( width = '2%' )
-          td( width = '2%' )
-          td( width = '43%' )
-          td( width = '2%' )
-          td( width = '2%' )
-          td( width = '2%' )
-          td( width = '43%' )
-          td( width = '2%' )
-          td( width = '2%' )
-        - for( var i = 0; i < items.length; i = i + 2 )
-          - let left = items[i]
-          - let right = items[i+1]
-          tr
-            td( rowspan = 6 )
-            td.fz12( colspan = 3 )
-              img.maw100p( alt = left.title, src = left.imgpath, width = 282 )
-            td( rowspan = 6 )
-            if right
-              td.fz12( colspan = 3 )
-                img.maw100p( alt = right.title, src = right.imgpath, width = 282 )
-            else
-              td( colspan = 3, rowspan = 6 )
-            td( rowspan = 6 )
-          tr( height = 6 )
-            td( colspan = 3, bgcolor = col.white )
-            if right
-              td( colspan = 3, bgcolor = col.white )
-          tr
-            td( bgcolor = col.white )
-            td.fz14( bgcolor = col.white ): font( color = col.gray_darker ): b= left.title
-            td( bgcolor = col.white )
-            if right
-              td( bgcolor = col.white )
-              td.fz14( bgcolor = col.white ): font( color = col.gray_darker ): b= right.title
-              td( bgcolor = col.white )
-          tr( height = 6 )
-            td( colspan = 3, bgcolor = col.white )
-            if right
-              td( colspan = 3, bgcolor = col.white )
-          tr
-            td( bgcolor = col.white )
-            td.fz12( bgcolor = col.white, valign = top ): font( color = col.gray )= left.detail
-            td( bgcolor = col.white )
-            if right
-              td( bgcolor = col.white )
-              td.fz12( bgcolor = col.white, valign = top ): font( color = col.gray )= right.detail
-              td( bgcolor = col.white )
-          tr( height = 6 )
-            td( colspan = 3, bgcolor = col.white )
-            if right
-              td( colspan = 3, bgcolor = col.white )
-          tr( height = 12 ): td( colspan = 9 )
+          td.clear
+            div.flex-parent
+              - for( var i = 0; i < items.length; i++ )
+                - let item = items[i]
+                div.resp_division
+                  if i !== items.length - 1
+                    - instHeight = 172
+                  else
+                    - instHeight = 160
+                  +table.maw240.clear( align = left, width = '40%', height = instHeight )
+                    tr
+                      td( width = '100%', valign = top, bgcolor = col.black )
+                        img.maw100p( alt = item.title, src = item.imgpath, width = 240 )
+                    if( i != items.length - 1 )
+                      tr.sp-hidden( height = 12 ): td
+                  +table.maw360( align = left, width = '60%', height = instHeight )
+                    tr( height = 35 )
+                      td( width = '100%', valign = top, bgcolor = col.black )
+                        div.p2p.fz16
+                          b: font( color = col.gray_lighter )= item.title
+                    tr
+                      td( width = '100%', valign = top, bgcolor = col.black )
+                        div.p022p.fz14
+                          b: font( color = col.gray_lighter )= item.detail
+                    if( i != items.length - 1 )
+                      tr.sp-hidden( height = 12 ): td

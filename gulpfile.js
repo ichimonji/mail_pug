@@ -13,7 +13,6 @@ const
   fs = require('fs'),
   fileInclude = require('gulp-file-include'),
   runSequence = require('run-sequence'),
-  jsonEdit = require('gulp-json-editor'),
   jsonStylus = require('gulp-json-stylus');
 
 // パス

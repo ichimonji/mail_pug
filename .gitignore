@@ -12,4 +12,5 @@ coverage
 .coverage
 package-lock.json
 dist/*
+present.md
 config.sublime-workspace

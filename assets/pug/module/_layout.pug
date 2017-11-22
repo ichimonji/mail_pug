@@ -12,11 +12,11 @@ html(lang='ja')
     meta( http-equiv = 'Content-Style-Type', content = 'text/css' )
     meta(name = 'description', content = page.description)
     title= title
-    - if( page.insert_style )
-      |<style><!--
-      |@@include('../../dist/css/#{page.insert_style}')
-      |--></style>
-    - if( page.inline_style )
+    if page.insert_style
+      | <style><!--
+      | @@include('../../dist/css/#{page.insert_style}')
+      | --></style>
+    if page.inline_style
       link( rel = 'stylesheet', href = 'css/' + page.inline_style )
   +body
     +table( width = '100%' )

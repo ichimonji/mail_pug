@@ -1,5 +1,5 @@
 mixin body
-  body(  text = '#000000', bgcolor = '#FFFFFF', link = '#3366cc', vlink = '#3366cc' )
+  body(  text = col.black, bgcolor = col.white, link = col.link, vlink = col.link_visited )
     block
 
 mixin table
@@ -17,7 +17,7 @@ mixin mso
   | <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
 
 -
-  var
+  let
     left = 'left',
     center = 'center',
     right = 'right',

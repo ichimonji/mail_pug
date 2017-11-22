@@ -6,35 +6,39 @@ sp()
     {block}
 
 td
-  padding: 0
-  line-height: 0
-  word-wrap: break-word
-  word-break: break-all
+  padding 0
+  line-height 0
+  word-wrap break-word
+  word-break break-all
 
 body
-  margin: 0
-  padding: 0
+  margin 0
+  padding 0
 
 img
-  height: auto
-  line-height: 100%
-  outline: none
-  text-decoration: none
-  margin: 0
-  padding: 0
-  vertical-align: middle
+  height auto
+  line-height 100%
+  outline none
+  text-decoration none
+  margin 0
+  padding 0
+  vertical-align middle
 
 a
-  &:hover
-    text-decoration: underline
-  &:visited
-    text-decoration: underline
-    color: #3366cc
+  color col-link !important
+  text-decoration underline !important
   &:link
-    text-decoration: underline
-    color: #3366cc
+    text-decoration underline !important
+    color col-link !important
+  &:visited
+    text-decoration underline !important
+    color col-link_visited !important
+  &:hover
+    text-decoration underline !important
+    color col-link !important
   &:active
-    text-decoration: underline
+    text-decoration underline !important
+    color col-link !important
 
 +sp()
   .sp-hidden
