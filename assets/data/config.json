@@ -7,18 +7,26 @@
 		"supportmail": "support@sample.org",
 		"helppage": "http://www.sample.org/help/index.html"
 	},
+	"col": {
+		"black": "#000000",
+		"white": "#ffffff",
+		"gray_darker": "#333333",
+		"gray": "#666666",
+		"gray_light": "#999999",
+		"gray_lighter": "#eeeeee"
+	},
 	"pages": {
-		"mail2017xxxx": {
-			"title": "this is mail name.",
+		"mail20171001": {
+			"title": "vol.01 2017/10/01",
 			"description": "this is individual description",
-			"insert_style": "mail2017xxxx/insert.css",
-			"inline_style": "mail2017xxxx/inline.css"
+			"insert_style": "mail20171001/insert.css",
+			"inline_style": "mail20171001/inline.css"
 		},
-		"mail2017xxx2": {
-			"title": "this is mail name. part2",
+		"mail20171101": {
+			"title": "vol.02 2017/11/01",
 			"description": "this is individual description part2",
-			"insert_style": "mail2017xxx2/insert.css",
-			"inline_style": "mail2017xxx2/inline.css"
+			"insert_style": "mail20171101/insert.css",
+			"inline_style": "mail20171101/inline.css"
 		}
 	}
 }

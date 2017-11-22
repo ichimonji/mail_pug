@@ -1,7 +1,7 @@
 tr.sp-hidden( height = 12): td
-tr: td( align = 'center', bgcolor = '#f2f2f2' )
+tr: td( align = center, bgcolor = '#f2f2f2' )
   +mso
-    +table( class = 'maw600', width = '100%' )
+    +table.maw600(  width = '100%' )
       tr( height = 12 )
         td( width = '2%' )
         td( width = '16%' )
@@ -17,23 +17,23 @@ tr: td( align = 'center', bgcolor = '#f2f2f2' )
       tr( height = 6 ): td( colspan = 5 )
       tr
         td
-        td.fz12( align = 'right' )
+        td.fz12( align = right )
           | support:
         td
         td.fz12
-          a( target = '_blank', href = 'mailto:' + base.supportmail )= base.supportmail
+          a( target = blank, href = 'mailto:' + base.supportmail )= base.supportmail
       tr( height = 6 ): td( colspan = 5 )
       tr
         td
-        td.fz12( align = 'right' )
+        td.fz12( align = right )
           | help:
         td
         td.fz12
-          a( target = '_blank', href = base.helppage )= base.helppage
+          a( target = blank, href = base.helppage )= base.helppage
       tr( height = 6 ): td( colspan = 5 )
       tr
         td
-        td.fz12( align = 'right', colspan = 3 )
+        td.fz12( align = right, colspan = 3 )
           | copyright &copy; 2010 - 2017 #{base.host}
         td
       tr( height = 12 ): td( colspan = 5 )

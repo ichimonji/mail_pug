@@ -1,0 +1,54 @@
+extends module/_layout
+
+block vars
+  //- ページid
+  - let pageid = 'mail20171001'
+
+block contents
+  tr: td( align = center )
+    +mso
+      +table.maw600( width = '100%', bgcolor = '#d23933' )
+        tr( height = 6 )
+          td( width = '2%', rowspan = 3 )
+          td( width = '96%' )
+          td( width = '2%', rowspan = 3 )
+        tr
+          td.fz14( align = left )
+            font( color = col.white ): b
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              | Distinctio odit, veritatis nulla enim blanditiis dolor repudiandae quod maxime assumenda qui perferendis dolorum suscipit fugit magni, molestiae sapiente? Recusandae saepe, nulla.
+        tr: td( height = 6 )
+        tr( bgcolor = col.gray_lighter )
+          td( rowspan = 3 )
+          td( height = 6 )
+          td( rowspan = 3 )
+        tr( bgcolor = col.gray_lighter )
+          td.fz12( align = left )
+            font( color = col.gray )
+              | Minima culpa repellendus at sint omnis, quibusdam nemo asperiores, assumenda laborum ullam perspiciatis, sequi possimus officia nam ea maiores cum, ducimus illo? Quidem blanditiis porro asperiores, at mollitia ab aliquam.
+        tr( bgcolor = col.gray_lighter, height = 6 ): td
+  tr.sp-hidden( height = 12): td
+  tr: td( align = center )
+    +mso
+      +table.maw600( width = '100%' )
+        tr( height = 12 )
+          td.clear
+            div.flex-parent
+              - for( var i = 0; i < items.length; i++ )
+                - let item = items[i]
+                div.resp_division
+                  +table.maw240( align = left, width = '40%', height = 172 )
+                    tr
+                      td( width = '100%', valign = top, bgcolor = col.black )
+                        img.maw100p( alt = item.title, src = item.imgpath, width = 240 )
+                    tr.sp-hidden( height = 12 ): td
+                  +table.maw360( align = left, width = '60%', height = 172 )
+                    tr( height = 35 )
+                      td( width = '100%', valign = top, bgcolor = col.black )
+                        div.p2p.fz16
+                          b: font( color = col.gray_lighter )= item.title
+                    tr
+                      td( width = '100%', valign = top, bgcolor = col.black )
+                        div.p022p.fz14
+                          b: font( color = col.gray_lighter )= item.detail
+                    tr.sp-hidden( height = 12 ): td

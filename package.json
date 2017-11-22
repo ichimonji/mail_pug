@@ -20,6 +20,7 @@
     "gulp-file-include": "^1.2.0",
     "gulp-inline-css": "^3.1.1",
     "gulp-json-editor": "^2.2.1",
+    "gulp-json-stylus": "^0.1.2",
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-pug": "^3.3.0",

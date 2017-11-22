@@ -13,15 +13,13 @@ const
   fs = require('fs'),
   fileInclude = require('gulp-file-include'),
   runSequence = require('run-sequence'),
-  jsonEdit = require('gulp-json-editor');
+  jsonEdit = require('gulp-json-editor'),
+  jsonStylus = require('gulp-json-stylus');
 
 // パス
 const
   assets = './assets/',
   dist = './dist/';
-
-const
-  config = require( assets + 'data/config.json' );
 
 // 各種変数
 let
@@ -43,6 +41,10 @@ let
 const
   pugOptions = {
     pretty: true,
+    basedir: 'mail_pug/'
+  },
+  pugMinifyOptions = {
+    pretty: false,
     basedir: 'mail_pug/'
   },
   inlineOption = {
@@ -69,14 +71,14 @@ gulp.task('server', () => {
     }));
 });
 
+/* clean */
+gulp.task('clean', callback => del(dist, callback) );
 
 /* pug */
 gulp.task('pug', () =>
   gulp.src( [ assets + 'pug/**/*.pug', '!' + assets + 'pug/module/**/*.pug' ] )
     // 共通データの読み込み
-    .pipe(data( file => {
-      return setJson( assets + 'data/config.json' );
-    }))
+    .pipe(data( file => setJson( assets + 'data/config.json' ) ))
     // 各データの読み込み
     .pipe(data( file => {
       let c, filename, filepath;
@@ -93,32 +95,26 @@ gulp.task('pug', () =>
     .pipe(gulp.dest( dist ))
 );
 
-/* jsonEdit
-gulp.task('jsonEdit', () =>
-  gulp.src( assets + 'data/config.json' )
-    .pipe(jsonEdit(
-      json => {
-        json.page = page;
-        return json;
-      }
-    ))
-    .pipe(gulp.dest( assets + 'data/' ))
-)
- */
-
-/* build list index
-gulp.task('buildlist', () =>
-  gulp.src( [ assets + 'pug/list.pug' ] )
-    // データの読み込み
+/* pugMinify */
+gulp.task('pugMinify', () =>
+  gulp.src( [ assets + 'pug/**/*.pug', '!' + assets + 'pug/module/**/*.pug' ] )
+    // 共通データの読み込み
+    .pipe(data( file => setJson( assets + 'data/config.json' ) ))
+    // 各データの読み込み
     .pipe(data( file => {
-      return setJson( assets + 'data/config.json' );
+      let c, filename, filepath;
+      if (file.path.length !== 0) {
+        c = file.path.split('\\').join('/');
+        filename = c.split('/pug/')[1].replace('.pug', '');
+        filepath = assets + 'data/' + filename + '.json';
+        if ( isExistFile(filepath) ) return setJson(filepath);
+      }
     }))
     .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
-    .pipe(pug( pugOptions ))
+    .pipe(pug( pugMinifyOptions ))
     .pipe(fileInclude())
     .pipe(gulp.dest( dist ))
 );
- */
 
 /* stylus */
 gulp.task('stylus', () =>
@@ -129,6 +125,18 @@ gulp.task('stylus', () =>
     }))
     .pipe(gulp.dest( dist + 'css' ))
 );
+
+/* stylusMinify */
+gulp.task('stylusMinify', () =>
+  gulp.src( [ assets + 'styl/**/*.styl', '!' + assets + 'styl/module/**/*.styl' ] )
+    .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
+    .pipe(stylus({
+      use: nib(),
+      compress: true
+    }))
+    .pipe(gulp.dest( dist + 'css' ))
+);
+
 
 /* inline */
 gulp.task('inline', () =>
@@ -153,6 +161,11 @@ gulp.task(
   'build',
   callback => runSequence( 'stylus', 'pug', 'inline', callback )
 );
+/* minify */
+gulp.task(
+  'minify',
+  callback => runSequence( 'stylusMinify', 'pugMinify', 'inline', callback )
+);
 
 /* watch */
 gulp.task('watch', () => {
@@ -163,5 +176,5 @@ gulp.task('watch', () => {
 /* default */
 gulp.task(
   'default',
-  callback => runSequence( 'build', 'server', 'watch', callback )
+  callback => runSequence( 'clean', 'build', 'server', 'watch', callback )
 );
