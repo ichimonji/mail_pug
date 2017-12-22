@@ -5,71 +5,71 @@ block vars
   - let pageid = '20171001'
 
 block contents
-  tr: td( align = center )
+  tr: td._center
     +mso
-      +table.maw600( width = '100%', bgcolor = col.danger )
-        +grid( 6, [ '2%,', '96%', '2%' ] )
+      +table.-maw600._w100p( bgcolor = col.danger )
+        +grid( 6, [ '2%', '96%', '2%' ] )
         tr
-          td( rowspan = 2 )
-          td.fz14( align = left )
+          td._row2
+          td.-fz14._left
             font( color = col.white ): b
               | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               | Distinctio odit, veritatis nulla enim blanditiis dolor repudiandae quod maxime assumenda qui perferendis dolorum suscipit fugit magni, molestiae sapiente? Recusandae saepe, nulla.
-          td( rowspan = 2 )
-        tr: td( height = 6 )
+          td._row2
+        tr: td._h6
         tr( bgcolor = col.gray_lighter )
-          td( rowspan = 3 )
-          td( height = 6 )
-          td( rowspan = 3 )
+          td._row3
+          td._h6
+          td._row3
         tr( bgcolor = col.gray_lighter )
-          td.fz12( align = left )
+          td.-fz12._left
             font( color = col.gray )
               | Minima culpa repellendus at sint omnis, quibusdam nemo asperiores, assumenda laborum ullam perspiciatis, sequi possimus officia nam ea maiores cum, ducimus illo? Quidem blanditiis porro asperiores, at mollitia ab aliquam.
-        tr( bgcolor = col.gray_lighter, height = 6 ): td
-  tr: td( align = center )
+        tr._h6( bgcolor = col.gray_lighter ): td
+  tr: td._center
     +mso
-      +table.maw600( width = '100%', bgcolor = '#aaeeff' )
+      +table.-maw600._w100p( bgcolor = '#aaeeff' )
         +grid( 12, [ '2%', '2%', '43%', '2%', '2%', '2%', '43%', '2%', '2%' ] )
         - for( var i = 0; i < items.length; i = i + 2 )
           - let leftItem = items[i]
           - let rightItem = items[i+1]
           tr
-            td( rowspan = 6 )
-            td.fz12( colspan = 3 )
-              img.maw100p( alt = leftItem.title, src = leftItem.imgpath, width = 282 )
-            td( rowspan = 6 )
+            td._row6
+            td.-fz12._col3
+              img.-maw100p._w282( alt = leftItem.title, src = leftItem.imgpath )
+            td._row6
             if rightItem
-              td.fz12( colspan = 3 )
-                img.maw100p( alt = rightItem.title, src = rightItem.imgpath, width = 282 )
+              td.-fz12._col3
+                img.-maw100p._w282( alt = rightItem.title, src = rightItem.imgpath )
             else
-              td( colspan = 3, rowspan = 6 )
-            td( rowspan = 6 )
-          tr( height = 6 )
-            td( colspan = 3, bgcolor = col.white )
+              td._col3._row6
+            td._row6
+          tr._h6
+            td._col3( bgcolor = col.white )
             if rightItem
-              td( colspan = 3, bgcolor = col.white )
+              td._col3( bgcolor = col.white )
           tr
             td( bgcolor = col.white )
-            td.fz14( bgcolor = col.white ): font( color = col.gray_darker ): b= leftItem.title
+            td.-fz14( bgcolor = col.white ): font( color = col.gray_darker ): b= leftItem.title
             td( bgcolor = col.white )
             if rightItem
               td( bgcolor = col.white )
-              td.fz14( bgcolor = col.white ): font( color = col.gray_darker ): b= rightItem.title
+              td.-fz14( bgcolor = col.white ): font( color = col.gray_darker ): b= rightItem.title
               td( bgcolor = col.white )
-          tr( height = 6 )
-            td( colspan = 3, bgcolor = col.white )
+          tr._h6
+            td._col3( bgcolor = col.white )
             if rightItem
-              td( colspan = 3, bgcolor = col.white )
+              td._col3( bgcolor = col.white )
           tr
             td( bgcolor = col.white )
-            td.fz12( bgcolor = col.white, valign = top ): font( color = col.gray )= leftItem.detail
+            td.-fz12._top( bgcolor = col.white ): font( color = col.gray )= leftItem.detail
             td( bgcolor = col.white )
             if rightItem
               td( bgcolor = col.white )
-              td.fz12( bgcolor = col.white, valign = top ): font( color = col.gray )= rightItem.detail
+              td.-fz12._top( bgcolor = col.white ): font( color = col.gray )= rightItem.detail
               td( bgcolor = col.white )
-          tr( height = 6 )
-            td( colspan = 3, bgcolor = col.white )
+          tr._h6
+            td._col3( bgcolor = col.white )
             if rightItem
-              td( colspan = 3, bgcolor = col.white )
-          tr( height = 12 ): td( colspan = 9 )
+              td._col3( bgcolor = col.white )
+          tr._h12: td._col9

@@ -153,8 +153,11 @@ gulp.task('replace', () =>
     .pipe(
       through.obj(function (file, enc, cb) {
         var arr = rep.replaceArr;
-        var reg = new RegExp(arr[0][0], 'g');
-        file.contents = new Buffer(file.contents.toString().replace(reg, arr[0][1]));
+        var reg;
+        for( var i in arr ){
+          reg = new RegExp(arr[i][0], 'g');
+          file.contents = new Buffer(file.contents.toString().replace(reg, arr[i][1]));
+        }
         //file.replace(reg, arr[0][1]);
         cb(null, file);
       })
@@ -175,7 +178,7 @@ gulp.task(
 /* build */
 gulp.task(
   'build',
-  callback => runSequence( 'stylus', 'pug', 'inline', callback )
+  callback => runSequence( 'stylus', 'pug', 'inline', 'replace', callback )
 );
 /* minify */
 gulp.task(

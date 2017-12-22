@@ -6,11 +6,11 @@ include _mixins
 html(lang='ja')
   head
     meta( http-equiv = 'Content-Language', content = 'ja' )
-    meta( http-equiv = 'Content-Type', content = 'text/html; charset = utf-8' )
-    meta( name = 'viewport', content = 'initial-scale = 1, width = device-width' )
-    meta( name = 'format-detection', content = 'telephone = no, address = no, email = no, date = no' )
+    meta( http-equiv = 'Content-Type', content = 'text/html; charset=utf-8' )
+    meta( name = 'viewport', content = 'initial-scale=1, width=device-width' )
+    meta( name = 'format-detection', content = 'telephone=no, address=no, email=no, date=no' )
     meta( http-equiv = 'Content-Style-Type', content = 'text/css' )
-    meta(name = 'description', content = page.description)
+    meta( name = 'description', content = page.description )
     title= title
     if page.insert_style
       | <style><!--
@@ -19,12 +19,14 @@ html(lang='ja')
     if page.inline_style
       link( rel = 'stylesheet', href = 'inline.css' )
   +body
-    +table( width = '100%' )
+    +table._w100p
       //- header
       include _header
 
       //- contents
+      // contents
       block contents
+      // /contents
 
       //- footer
       include _footer
