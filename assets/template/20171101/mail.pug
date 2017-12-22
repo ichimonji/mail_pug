@@ -1,22 +1,21 @@
-extends module/_layout
+extends ../../module/pug/_layout
 
 block vars
   //- ページid
-  - let pageid = 'mail20171101'
+  - let pageid = '20171101'
 
 block contents
   tr: td( align = center )
     +mso
-      +table.maw600( width = '100%', bgcolor = '#d23933' )
-        tr( height = 6 )
-          td( width = '2%', rowspan = 3 )
-          td( width = '96%' )
-          td( width = '2%', rowspan = 3 )
+      +table.maw600( width = '100%', bgcolor = col.danger )
+        +grid( 6, [ '2%,', '96%', '2%' ] )
         tr
+          td( rowspan = 2 )
           td.fz14( align = left )
             font( color = col.white ): b
               | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               | Distinctio odit, veritatis nulla enim blanditiis dolor repudiandae quod maxime assumenda qui perferendis dolorum suscipit fugit magni, molestiae sapiente? Recusandae saepe, nulla.
+          td( rowspan = 2 )
         tr: td( height = 6 )
         tr( bgcolor = col.gray_lighter )
           td( rowspan = 3 )
@@ -28,7 +27,7 @@ block contents
               | Minima culpa repellendus at sint omnis, quibusdam nemo asperiores, assumenda laborum ullam perspiciatis, sequi possimus officia nam ea maiores cum, ducimus illo? Quidem blanditiis porro asperiores, at mollitia ab aliquam.
         tr( bgcolor = col.gray_lighter, height = 6 ): td
   tr.sp-hidden( height = 12): td
-  tr: td( align = center )
+  tr: td.tagleft( align = center )
     +mso
       +table.maw600( width = '100%' )
         tr( height = 12 )

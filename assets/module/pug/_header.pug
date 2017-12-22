@@ -1,17 +1,13 @@
-tr: td( align = center, bgcolor = '#f2f2f2' )
+tr: td( align = center, bgcolor = col.info_bg )
   +mso
     +table( class = 'maw600', width = '100%' )
-      tr( height = 6 )
-        td( width = '2%' )
-        td( width = '96%' )
-        td( width = '2%' )
+      +grid( 6, [ '2%,', '96%', '2%' ] )
       tr
         td( rowspan = 2 )
         td.fz12( align = left )
           font( color = col.gray_light )
             | このメールがご覧になれない場合は
-            a( href = 'http://google.com/', target = blank )
-              | こちら</a>
+            a( href = 'http://google.com/', target = blank ) こちら
             | をタップしてください。
         td( rowspan = 2 )
       tr( height = 6 ): td

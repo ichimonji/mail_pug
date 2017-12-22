@@ -1,22 +1,21 @@
-extends module/_layout
+extends ../../module/pug/_layout
 
 block vars
   //- ページid
-  - let pageid = 'mail20171001'
+  - let pageid = '20171001'
 
 block contents
   tr: td( align = center )
     +mso
-      +table.maw600( width = '100%', bgcolor = '#d23933' )
-        tr( height = 6 )
-          td( width = '2%', rowspan = 3 )
-          td( width = '96%' )
-          td( width = '2%', rowspan = 3 )
+      +table.maw600( width = '100%', bgcolor = col.danger )
+        +grid( 6, [ '2%,', '96%', '2%' ] )
         tr
+          td( rowspan = 2 )
           td.fz14( align = left )
             font( color = col.white ): b
               | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               | Distinctio odit, veritatis nulla enim blanditiis dolor repudiandae quod maxime assumenda qui perferendis dolorum suscipit fugit magni, molestiae sapiente? Recusandae saepe, nulla.
+          td( rowspan = 2 )
         tr: td( height = 6 )
         tr( bgcolor = col.gray_lighter )
           td( rowspan = 3 )
@@ -30,16 +29,7 @@ block contents
   tr: td( align = center )
     +mso
       +table.maw600( width = '100%', bgcolor = '#aaeeff' )
-        tr( height = 12 )
-          td( width = '2%' )
-          td( width = '2%' )
-          td( width = '43%' )
-          td( width = '2%' )
-          td( width = '2%' )
-          td( width = '2%' )
-          td( width = '43%' )
-          td( width = '2%' )
-          td( width = '2%' )
+        +grid( 12, [ '2%', '2%', '43%', '2%', '2%', '2%', '43%', '2%', '2%' ] )
         - for( var i = 0; i < items.length; i = i + 2 )
           - let leftItem = items[i]
           - let rightItem = items[i+1]

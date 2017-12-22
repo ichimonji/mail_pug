@@ -14,10 +14,10 @@ html(lang='ja')
     title= title
     if page.insert_style
       | <style><!--
-      | @@include('../../dist/css/#{page.insert_style}')
+      | @@include('../../../dist/#{pageid}/insert.css')
       | --></style>
     if page.inline_style
-      link( rel = 'stylesheet', href = 'css/' + page.inline_style )
+      link( rel = 'stylesheet', href = 'inline.css' )
   +body
     +table( width = '100%' )
       //- header

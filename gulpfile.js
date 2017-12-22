@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 const
   // 各種プラグインの読み込み
   gulp = require('gulp'),
@@ -7,13 +9,19 @@ const
   plumber = require('gulp-plumber'),
   pug = require('gulp-pug'),
   stylus = require('gulp-stylus'),
+  cleanCSS = require('gulp-clean-css'),
   inline = require('gulp-inline-css'),
   server = require('gulp-webserver'),
   nib = require('nib'),
   fs = require('fs'),
   fileInclude = require('gulp-file-include'),
   runSequence = require('run-sequence'),
-  jsonStylus = require('gulp-json-stylus');
+  jsonStylus = require('gulp-json-stylus'),
+  through = require('through2'),
+  replace = require('gulp-replace');
+
+const
+  rep = require('./replacing.js');
 
 // パス
 const
@@ -30,9 +38,9 @@ let
   isExistFile = filepath => {
     try {
       fs.statSync(filepath);
-      return true
+      return true;
     } catch(err) {
-      if(err.code === 'ENOENT') return false
+      if(err.code === 'ENOENT') return false;
     }
   };
 
@@ -40,11 +48,11 @@ let
 const
   pugOptions = {
     pretty: true,
-    basedir: 'mail_pug/'
+    basedir: 'mail_pug/assets'
   },
   pugMinifyOptions = {
     pretty: false,
-    basedir: 'mail_pug/'
+    basedir: 'mail_pug/assets'
   },
   inlineOption = {
     applyStyleTags: false,
@@ -55,9 +63,6 @@ const
     ip: '0.0.0.0'
   };
 
-let
-  page = {};
-
 /* server */
 gulp.task('server', () => {
   gulp.src(dist)
@@ -65,7 +70,7 @@ gulp.task('server', () => {
       host: host.local,
       port: 8000,
       livereload: true,
-      fallback: 'list.html',
+      fallback: 'index.html',
       open: true
     }));
 });
@@ -75,7 +80,7 @@ gulp.task('clean', callback => del(dist, callback) );
 
 /* pug */
 gulp.task('pug', () =>
-  gulp.src( [ assets + 'pug/**/*.pug', '!' + assets + 'pug/module/**/*.pug' ] )
+  gulp.src( [ assets + 'template/**/*.pug' ] )
     // 共通データの読み込み
     .pipe(data( file => setJson( assets + 'data/config.json' ) ))
     // 各データの読み込み
@@ -83,8 +88,8 @@ gulp.task('pug', () =>
       let c, filename, filepath;
       if (file.path.length !== 0) {
         c = file.path.split('\\').join('/');
-        filename = c.split('/pug/')[1].replace('.pug', '');
-        filepath = assets + 'data/' + filename + '.json';
+        filename = c.split('/template/')[1].replace('.pug', '');
+        filepath = assets + 'template/' + filename + '.json';
         if ( isExistFile(filepath) ) return setJson(filepath);
       }
     }))
@@ -96,7 +101,7 @@ gulp.task('pug', () =>
 
 /* pugMinify */
 gulp.task('pugMinify', () =>
-  gulp.src( [ assets + 'pug/**/*.pug', '!' + assets + 'pug/module/**/*.pug' ] )
+  gulp.src( [ assets + 'template/**/*.pug', '!' + assets + 'template/module/**/*.pug' ] )
     // 共通データの読み込み
     .pipe(data( file => setJson( assets + 'data/config.json' ) ))
     // 各データの読み込み
@@ -104,8 +109,8 @@ gulp.task('pugMinify', () =>
       let c, filename, filepath;
       if (file.path.length !== 0) {
         c = file.path.split('\\').join('/');
-        filename = c.split('/pug/')[1].replace('.pug', '');
-        filepath = assets + 'data/' + filename + '.json';
+        filename = c.split('/template/')[1].replace('.pug', '');
+        filepath = assets + 'template/' + filename + '.json';
         if ( isExistFile(filepath) ) return setJson(filepath);
       }
     }))
@@ -117,31 +122,43 @@ gulp.task('pugMinify', () =>
 
 /* stylus */
 gulp.task('stylus', () =>
-  gulp.src( [ assets + 'styl/**/*.styl', '!' + assets + 'styl/module/**/*.styl' ] )
+  gulp.src( [ assets + 'template/**/*.styl' ] )
     .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
     .pipe(stylus({
       use: nib()
     }))
-    .pipe(gulp.dest( dist + 'css' ))
+    .pipe(gulp.dest( dist ))
 );
 
-/* stylusMinify */
-gulp.task('stylusMinify', () =>
-  gulp.src( [ assets + 'styl/**/*.styl', '!' + assets + 'styl/module/**/*.styl' ] )
+/* cssMinify */
+gulp.task('cssMinify', () =>
+  gulp.src( [ dist + '**/*.css' ] )
     .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
-    .pipe(stylus({
-      use: nib(),
-      compress: true
-    }))
-    .pipe(gulp.dest( dist + 'css' ))
+    .pipe(cleanCSS())
+    .pipe(gulp.dest( dist ))
 );
-
 
 /* inline */
 gulp.task('inline', () =>
   gulp.src( dist + '**/*.html' )
     .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
     .pipe(inline(inlineOption))
+    .pipe(gulp.dest( dist ))
+);
+
+/* replace */
+gulp.task('replace', () =>
+  gulp.src( dist + '**/*.html' )
+    .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
+    .pipe(
+      through.obj(function (file, enc, cb) {
+        var arr = rep.replaceArr;
+        var reg = new RegExp(arr[0][0], 'g');
+        file.contents = new Buffer(file.contents.toString().replace(reg, arr[0][1]));
+        //file.replace(reg, arr[0][1]);
+        cb(null, file);
+      })
+    )
     .pipe(gulp.dest( dist ))
 );
 
@@ -163,7 +180,7 @@ gulp.task(
 /* minify */
 gulp.task(
   'minify',
-  callback => runSequence( 'stylusMinify', 'pugMinify', 'inline', callback )
+  callback => runSequence( 'stylus', 'cssMinify', 'pugMinify', 'inline', callback )
 );
 
 /* watch */
