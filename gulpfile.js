@@ -158,13 +158,30 @@ gulp.task('replace', () =>
           reg = new RegExp(arr[i][0], 'g');
           file.contents = new Buffer(file.contents.toString().replace(reg, arr[i][1]));
         }
-        //file.replace(reg, arr[0][1]);
         cb(null, file);
       })
     )
     .pipe(gulp.dest( dist ))
 );
 
+/* replaceminify */
+gulp.task('replaceminify', () =>
+  gulp.src( dist + '**/*.html' )
+    .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
+    .pipe(
+      through.obj(function (file, enc, cb) {
+        var arr = rep.replaceArrMinify;
+        var reg;
+        for( var i in arr ){
+          reg = new RegExp(arr[i][0], 'g');
+          file.contents = new Buffer(file.contents.toString().replace(reg, arr[i][1]));
+        }
+        file.contents = new Buffer(file.contents.toString().replace(/style\="(.*?)"/g, function(r,r1){return "style=\""+r1.replace(/([:;]) /g,'$1')+"\"";}));
+        cb(null, file);
+      })
+    )
+    .pipe(gulp.dest( dist ))
+);
 /* cssbuild */
 gulp.task(
   'cssbuild',
@@ -183,7 +200,7 @@ gulp.task(
 /* minify */
 gulp.task(
   'minify',
-  callback => runSequence( 'stylus', 'cssMinify', 'pugMinify', 'inline', callback )
+  callback => runSequence( 'stylus', 'cssMinify', 'pugMinify', 'inline', 'replace',  'replaceminify',  callback )
 );
 
 /* watch */
