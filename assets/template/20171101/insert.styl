@@ -6,10 +6,6 @@
 
 +sp()
   .flex-parent
-    display -webkit-flex
-    display -moz-flex
-    display -ms-flex
-    display -o-flex
     display flex
     flex-direction row
     flex-wrap wrap
@@ -18,15 +14,22 @@
     padding 5px
     box-sizing border-box
   .resp_division
-    border 5px solid col.white
+    display flex
+    flex-direction column
+    flex-wrap nowrap
+    justify-content flex-start
+    align-items stretch
+    border 5px solid col-white
     box-sizing border-box
     width 50% !important
-    float left !important
-    background-color: col.black
+    background-color: col-black
+    & > table
+      width 100% !important
+      height auto !important
     & > .maw240,
     & > .maw360
       width 100% !important
-      height auto
+      height auto !important
       max-width 300px !important
       float none
       img

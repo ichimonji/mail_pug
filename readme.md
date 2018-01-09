@@ -5,6 +5,21 @@
 css(stylus)とhtml(pug)を分離した状態で管理し、なおかつhtmlを生成する際に自動でこれを１つのhtmlに直す。
 インライン用のcssはgulp-inline-cssにより自動でインラインに埋め込まれる。
 
+```
+gulp
+```
+通常ビルドおよびwebserver起動
+
+```
+gulp build
+```
+通常ビルド
+
+```
+gulp minify
+```
+圧縮ビルド
+
 ### assets/data
 
 プロジェクト全体の設定をする「config.json」を設定する。  

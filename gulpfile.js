@@ -188,8 +188,7 @@ gulp.task(
 
 /* watch */
 gulp.task('watch', () => {
-  gulp.watch( [ assets + 'pug/**/*.pug', assets + 'data/**/*.json' ], ['htmlbuild'] );
-  gulp.watch( [ assets + 'styl/**/*.styl' ], ['cssbuild'] );
+  gulp.watch( [ assets + '**/*.*' ], ['build'] );
 });
 
 /* default */
