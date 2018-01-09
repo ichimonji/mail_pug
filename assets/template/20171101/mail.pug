@@ -43,17 +43,20 @@ block contents
                   +table.maw240.clear._left._w40p( height = instHeight )
                     tr
                       td._w100p._top( bgcolor = col.black )
-                        img.-maw100p._w240( alt = item.title, src = item.imgpath )
+                        a._blank( href = item.imgpath )
+                          img.-maw100p._w240( alt = item.title, src = item.imgpath )
                     if( i != items.length - 1 )
                       tr.sp-hidden._h12: td
                   +table.maw360._left._w60p( height = instHeight )
                     tr( height = 35 )
                       td._w100p._top( bgcolor = col.black )
                         div.-p2p.fz16
-                          b: font( color = col.gray_lighter )= item.title
+                          a._blank.-bdn( href = item.imgpath )
+                            b: font( color = col.gray_lighter )= item.title
                     tr
                       td._w100p._top( bgcolor = col.black )
                         div.-p022p.fz14
-                          b: font( color = col.gray_lighter )= item.detail
+                          a._blank.-bdn( href = item.imgpath )
+                            b: font( color = col.gray_lighter )= item.detail
                     if( i != items.length - 1 )
                       tr.sp-hidden._h12: td
