@@ -3,20 +3,88 @@
 ## 全体の構成
 
 css(stylus)とhtml(pug)を分離した状態で管理し、なおかつhtmlを生成する際に自動でこれを１つのhtmlに直す。
-インライン用のcssは具lp-inline-cssにより自動でインラインに埋め込まれる。
+インライン用のcssはgulp-inline-cssにより自動でインラインに埋め込まれる。
 
 ### assets/data
 
-プロジェクト全体の設定をする「config.json」及び各ページのデータを保持する「ページID.json」を設定する。
-「ページID.json」は各ページのpugで扱うことができる。
+プロジェクト全体の設定をする「config.json」を設定する。  
+プロジェクト共通の情報を収納する**base**、色情報を収納する**col**、テンプレートごとの情報を収納する**pages**など。  
+そのほかに独自のキーを設定することも可能。
 
-### assets/pug
+### assets/module
 
-直下に一覧表示用の「list.pug」、及び各メイルのpugファイルをおく。
-moduleフォルダ内はレイアウト用のpugテンプレートなど。
+テンプレート共通モジュールを置く。  
+`pug/`はレイアウト用の「**\_layout.pug**」、ヘッダ部の「**\_header.pug**」など。  
+`styl/`はインライン用共通stylusの「**\_inline.styl**」、およびインサート用共通stylusの「**\_insert.styl**」。
 
-### assets/stylus
+### assets/template
 
-インライン表記用の「ページID/inline.styl」、及びヘッダ内のstyleタグに挿入する「ページID/insert.styl」をおく。
-moduleフォルダにはそれぞれの共通スタイルを記述したstylusファイルが置かれ、各ページのstylusファイルから参照される
+各メールごとのpug、stylus、jsonをディレクトリで分けて置く。
 
+## 独自の接頭辞、およびpugミックスイン
+
+### タグ属性付与用接頭辞「-」（アンダースコア）
+
+多用されるタグ属性をクラス名でタグに付与できる。これらのクラス名はビルド時に除去される。
+
+| グループ | クラス名 | 適用される属性 |
+|:-|:-|:-|
+| align | \_left | align="left" |
+|| \_center | align="center" |
+|| \_right | align="right" |
+| valign | \_top | align="top" |
+|| \_middle | align="middle" |
+|| \_bottom | align="bottom" |
+| rowspan | \_row2 | rowspan="2" |
+| colspan | \_col2 | colspan="2" |
+| width | \_w10 | width="10" |
+|| \_w10p | width="10%" |
+| height | \_h10 | height="10" |
+|| \_h10p | height="10%" |
+| border | \_bd2 | border="2" |
+| nofollow | \_nofollow | rel="nofollow" |
+| \_blank | \_blank | target="\_blank" |
+
+### ビルド時消去用接頭辞「-」（ハイフン）
+
+インラインcssを適用するためのクラス名にこれをつけることで、ビルドに除去されるようになる。
+
+### pugミックスイン
+
+#### `+mso`、`+table`
+
+`+mso`は条件付きコメントに挟まれたtableを提供する。`+table`は属性初期化を含んだtableタグを提供する。
+
+```
+	+mso
+		+table._w100p
+```
+
+```
+	<!--[if (mso)|(IE)]><table width="600" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+		<table width="100%" border-spacing="0" border="0" cellpadding="0" cellspacing="0">
+		</table>
+	<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+```
+
+#### `+grid(height,arr)`
+
+tableの幅を初期行で決め打ちするためのtr>tdタグを提供する。
+
+```
+	+grid( 12, [ '2%', '2%', '43%', '2%', '2%', '2%', '43%', '2%', '2%' ] )
+```
+
+```
+    <tr height="12">
+      <td width="2%"></td>
+      <td width="2%"></td>
+      <td width="43%"></td>
+      <td width="2%"></td>
+      <td width="2%"></td>
+      <td width="2%"></td>
+      <td width="43%"></td>
+      <td width="2%"></td>
+      <td width="2%"></td>
+    </tr>
+```
