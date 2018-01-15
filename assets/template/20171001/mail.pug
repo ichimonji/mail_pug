@@ -11,10 +11,7 @@ block contents
         +grid( 6, [ '2%', '96%', '2%' ] )
         tr
           td._row2
-          td.fz14._left
-            font( color = col.white ): b
-              | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              | Distinctio odit, veritatis nulla enim blanditiis dolor repudiandae quod maxime assumenda qui perferendis dolorum suscipit fugit magni, molestiae sapiente? Recusandae saepe, nulla.
+          td.fz14._left: font( color = col.white ): b= text.tx01
           td._row2
         tr: td._h6
         tr( bgcolor = col.gray_lighter )
@@ -22,9 +19,7 @@ block contents
           td._h6
           td._row3
         tr( bgcolor = col.gray_lighter )
-          td.fz12._left
-            font( color = col.gray )
-              | Minima culpa repellendus at sint omnis, quibusdam nemo asperiores, assumenda laborum ullam perspiciatis, sequi possimus officia nam ea maiores cum, ducimus illo? Quidem blanditiis porro asperiores, at mollitia ab aliquam.
+          td.fz12._left: font( color = col.gray )= text.tx02
         tr._h6( bgcolor = col.gray_lighter ): td
   tr: td._center
     +mso
